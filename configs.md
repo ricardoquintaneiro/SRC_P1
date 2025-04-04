@@ -1,12 +1,16 @@
-# PCs
+# Configurações dos Dispositivos de Rede
 
-## Internet
+## PCs
 
+### Internet
+
+```
 ip 100.0.0.100/24
 save
+```
 
-## Routers
+### Routers
 
-## Load-Balancers
+### Load-Balancers
 
-## Firewalls
+### Firewalls

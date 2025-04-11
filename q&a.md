@@ -24,4 +24,4 @@ Não, a gateway do PC da internet é o IP da FW Stateless.
 
 ## 2ª semana
 
-### (Opcional) Meter NAT para aceder à Internet.
+### (Opcional) Podemos sicronizar as definições das FW Stateless?

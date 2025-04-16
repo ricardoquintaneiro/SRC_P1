@@ -31,3 +31,5 @@ Não, a gateway do PC da internet é o IP da FW Stateless.
 ### Policy Based Routing é por Route Maps? É que em SRC há nicles acerca disto
 
 ### OSPF tudo em area 0?
+
+### OSPF tem de ser configurado para as redes intermédias (router a router)?

@@ -4,6 +4,25 @@
 
 ```
 conf t
+ip routing
+ip route 100.0.0.128 255.255.255.192 100.0.0.2
+ip route 100.0.0.192 255.255.255.192 100.0.0.6
+router ospf 1 
+default-information originate always
+int f0/0
+ip addr 100.0.0.1 255.255.255.252
+no shut
+int f0/1
+ip addr 100.0.0.5 255.255.255.252
+no shut
+int f1/0
+ip addr 10.0.0.1 255.255.255.0
+ip ospf 1 area 0
+no shut
+int f1/1
+ip addr 10.0.1.1 255.255.255.0
+ip ospf 1 area 0
+no shut
 end
 write
 ```
@@ -12,6 +31,25 @@ write
 
 ```
 conf t
+ip routing
+ip route 100.0.0.128 255.255.255.192 100.0.0.10
+ip route 100.0.0.192 255.255.255.192 100.0.0.14
+router ospf 1 
+default-information originate always
+int f0/0
+ip addr 100.0.0.9 255.255.255.252
+no shut
+int f0/1
+ip addr 100.0.0.13 255.255.255.252
+no shut
+int f1/0
+ip addr 10.0.0.2 255.255.255.0
+ip ospf 1 area 0
+no shut
+int f1/1
+ip addr 10.0.2.2 255.255.255.0
+ip ospf 1 area 0
+no shut
 end
 write
 ```
@@ -117,3 +155,4 @@ no shut
 end
 write
 ```
+

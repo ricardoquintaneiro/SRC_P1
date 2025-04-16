@@ -2,41 +2,67 @@
 
 ## Internet: 100.0.0.0/24
 
-PC da Internet 1: `100.0.0.201`
+### INTERNET-1 - FW-ST1: 100.0.0.128/26
+
+PC da Internet 1: `100.0.0.131`
+
+FW-ST1: `100.0.0.129`
+
+### INTERNET-2 - FW-ST2: 100.0.192/26
 
 PC da Internet 2: `100.0.0.202`
 
-FW-ST1: `100.0.0.121`
+FW-ST2: `100.0.0.193`
 
-FW-ST2: `100.0.0.122`
+### R1 - FW-ST1: 100.0.0.0/30
 
-### R1 - FW-ST1:
+**4 endereços IP** - 2 routers + 2 IPs de broadcast/rede 
 
-`R1: 100.0.0.1/24`
+IPs disponíveis:
+- `100.0.0.1 - 100.0.0.2`
 
-`FW-ST1: 100.0.0.101/24`
+`R1: 100.0.0.1/30`
 
-### R2 - FW-ST2:
+`FW-ST1: 100.0.0.2/30`
 
-`R2: 100.0.0.2/24`
+### R1 - FW-ST2: 100.0.0.4/30
 
-`FW-ST2: 100.0.1.102/24`
+**4 endereços IP** - 2 routers + 2 IPs de broadcast/rede 
 
-### R1 - FW-ST2:
+IPs disponíveis:
+- `100.0.0.5 - 100.0.0.6`
 
-`R1: 100.0.0.11/24`
+`R1: 100.0.0.5/30`
 
-`FW-ST2: 100.0.1.112/24`
+`FW-ST2: 100.0.0.6/30`
 
-### R2 - FW-ST1:
+### R2 - FW-ST1: 100.0.0.8/30
 
-`R2: 100.0.0.12/24`
+**4 endereços IP** - 2 routers + 2 IPs de broadcast/rede 
 
-`FW-ST1: 100.0.0.111/24`
+IPs disponíveis:
+- `100.0.0.9 - 100.0.0.10`
 
-### Gama de IPs para o NAT:
+`R2: 100.0.0.9/30`
 
-`100.0.0.50 - 100.0.0.60`
+`FW-ST1: 100.0.0.10/30`
+
+### R2 - FW-ST2: 100.0.0.12/30
+
+**4 endereços IP** - 2 routers + 2 IPs de broadcast/rede 
+
+IPs disponíveis:
+- `100.0.0.13 - 100.0.0.14`
+
+`R2: 100.0.0.13/30`
+
+`FW-ST3: 100.0.0.14/30`
+
+### Gama de IPs para o NAT: 100.0.0.64/26
+
+**64 endereços IP** - 62 terminais + 2 IP de broadcast/rede
+
+`100.0.0.65 - 100.0.0.126`
 
 ## DMZ: 200.0.0.0/24
 

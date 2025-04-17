@@ -155,6 +155,16 @@ vlan 20
 exit
 conf t
 ip routing
+ip access-list extended MATCH-VLAN10
+permit ip 10.10.0.0 0.0.0.255 any
+ip access-list extended MATCH-VLAN20
+permit ip 10.20.0.0 0.0.0.255 any
+route-map VLAN10-TO-FW permit 10
+match ip address MATCH-VLAN10
+set ip next-hop 10.0.16.111
+route-map VLAN20-TO-FW permit 10
+match ip address MATCH-VLAN20
+set ip next-hop 10.0.16.111
 int f0/0
 ip addr 10.0.16.41 255.255.255.0
 ip ospf 1 area 0
@@ -166,10 +176,12 @@ switchport trunk encapsulation dot1q
 int vlan 10
 ip addr 10.10.0.1 255.255.255.0
 ip ospf 1 area 0
+ip policy route-map VLAN10-TO-FW
 no shut
 int vlan 20
 ip addr 10.20.0.1 255.255.255.0
 ip ospf 1 area 0
+ip policy route-map VLAN20-TO-FW
 no shut
 end
 write
@@ -194,3 +206,47 @@ end
 write
 ```
 
+## Intranet-Storage 
+
+```
+conf t 
+no ip routing
+interface f0/0
+ip address 10.100.0.10 255.255.255.0
+no shut
+ip default-gateway 10.100.0.1
+ip http secure-port 443
+ip http secure-server
+end
+write
+```
+ 
+## Internet-DNS
+
+```
+conf t
+no ip routing
+interface f0/0
+ip address 10.100.1.10 255.255.255.0
+no shut
+ip default-gateway 10.100.1.1
+ip http secure-port 1053
+ip http secure-server
+end
+write
+```
+
+## Database
+
+```
+conf t 
+no ip routing
+interface f0/0
+ip address 10.100.2.10 255.255.255.0
+no shut
+ip default-gateway 10.100.2.1
+ip http secure-port 3306
+ip http secure-server
+end
+write
+```

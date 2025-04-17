@@ -28,8 +28,6 @@ Não, a gateway do PC da internet é o IP da FW Stateless.
 
 ### Tráfego do Datacenter tmb tem de ir à FW?
 
-### Policy Based Routing é por Route Maps? É que em SRC há nicles acerca disto
-
-### OSPF tudo em area 0?
-
 ### OSPF tem de ser configurado para as redes intermédias (router a router)?
+
+### Não faz sentido ter um load balancer antes das FW Stateless?

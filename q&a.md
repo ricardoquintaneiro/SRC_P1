@@ -35,3 +35,5 @@ Não, a gateway do PC da internet é o IP da FW Stateless.
 ### Em relação à security policy nº 1 do enunciado, como é que é suposto aguentar ataques de DDoS? É criar um script como estava no guião?
 
 ### A DMZ tem acesso à Internet (ou tem só established/related)?
+
+### É preciso fazer mesmo SSH com o dispositivo do Admin ou é só preciso estabelecer regras para o porto 22 (2022 por causa dos pings)?

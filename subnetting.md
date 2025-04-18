@@ -87,6 +87,13 @@ IPs disponíveis:
 IPs disponíveis:
 - `200.0.0.193 - 200.0.0.254`
 
+## VLAN 1: 10.1.0.0/24
+
+**256 endereços IP** - 253 terminais + 1 gateway + 2 IPs de broadcast/rede
+
+Admin-PC: `10.1.0.10/24`
+Gateway: `10.1.0.1/24`
+
 ## VLAN 10: 10.10.0.0/24
 
 256 endereços IP - 253 terminais + 1 gateway + 2 IPs de broadcast/rede

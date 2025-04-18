@@ -150,11 +150,14 @@ write
 
 ```
 vlan database
+vlan 1
 vlan 10
 vlan 20
 exit
 conf t
 ip routing
+ip access-list extended MATCH-VLAN1
+permit ip 10.1.0.0 0.0.0.255 any
 ip access-list extended MATCH-VLAN10
 permit ip 10.10.0.0 0.0.0.255 any
 ip access-list extended MATCH-VLAN20
@@ -165,6 +168,9 @@ set ip next-hop 10.0.16.111
 route-map VLAN20-TO-FW permit 10
 match ip address MATCH-VLAN20
 set ip next-hop 10.0.16.111
+route-map VLAN1-TO-FW permit 10
+match ip address MATCH-VLAN1
+set ip next-hop 10.0.16.111
 int f0/0
 ip addr 10.0.16.41 255.255.255.0
 ip ospf 1 area 0
@@ -173,6 +179,11 @@ int f1/0
 switchport mode trunk
 switchport trunk allowed vlan 1,10,20,1002-1005
 switchport trunk encapsulation dot1q
+int vlan 1
+ip addr 10.1.0.1 255.255.255.0
+ip ospf 1 area 0
+ip policy route-map VLAN1-TO-FW
+no shut
 int vlan 10
 ip addr 10.10.0.1 255.255.255.0
 ip ospf 1 area 0

@@ -41,6 +41,13 @@ save
 
 ## VLANs internas
 
+### PC-VLAN1
+
+```
+ip 10.1.0.10/24 10.1.0.1
+save
+```
+
 ### PC-VLAN10
 
 ```

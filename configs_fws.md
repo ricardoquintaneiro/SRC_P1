@@ -84,6 +84,15 @@ set firewall name FROM-CORE-TO-OUTSIDE rule 2 description "Accept Internet from 
 set firewall name FROM-CORE-TO-OUTSIDE rule 2 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 2 protocol tcp_udp
 set firewall name FROM-CORE-TO-OUTSIDE rule 2 destination port 443
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 description "Accept ICMP to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 action accept
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 protocol icmp
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 description "Allow SSH to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 action accept
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 protocol tcp
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 2022
 set zone-policy zone OUTSIDE from CORE firewall name FROM-CORE-TO-OUTSIDE
 set firewall name FROM-CORE-TO-DMZ rule 1 description "Accept TCP/UDP to DMZ on port 443"
 set firewall name FROM-CORE-TO-DMZ rule 1 action accept
@@ -101,6 +110,15 @@ set firewall name FROM-CORE-TO-DMZ rule 4 description "Accept DNS (UDP) from DMZ
 set firewall name FROM-CORE-TO-DMZ rule 4 action accept
 set firewall name FROM-CORE-TO-DMZ rule 4 protocol udp
 set firewall name FROM-CORE-TO-DMZ rule 4 destination port 1053
+set firewall name FROM-CORE-TO-DMZ rule 5 description "Accept ICMP to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-DMZ rule 5 action accept
+set firewall name FROM-CORE-TO-DMZ rule 5 protocol icmp
+set firewall name FROM-CORE-TO-DMZ rule 5 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 6 description "Allow SSH to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-DMZ rule 6 action accept
+set firewall name FROM-CORE-TO-DMZ rule 6 protocol tcp
+set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 6 destination port 2022
 set zone-policy zone DMZ from CORE firewall name FROM-CORE-TO-DMZ
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections to Core"
 set firewall name TO-CORE rule 1 action accept
@@ -170,6 +188,15 @@ set firewall name FROM-CORE-TO-OUTSIDE rule 2 description "Accept Internet from 
 set firewall name FROM-CORE-TO-OUTSIDE rule 2 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 2 protocol tcp_udp
 set firewall name FROM-CORE-TO-OUTSIDE rule 2 destination port 443
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 description "Accept ICMP to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 action accept
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 protocol icmp
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 description "Allow SSH to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 action accept
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 protocol tcp
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 2022
 set zone-policy zone OUTSIDE from CORE firewall name FROM-CORE-TO-OUTSIDE
 set firewall name FROM-CORE-TO-DMZ rule 1 description "Accept TCP/UDP to DMZ on port 443"
 set firewall name FROM-CORE-TO-DMZ rule 1 action accept
@@ -187,6 +214,15 @@ set firewall name FROM-CORE-TO-DMZ rule 4 description "Accept DNS (UDP) to DMZ o
 set firewall name FROM-CORE-TO-DMZ rule 4 action accept
 set firewall name FROM-CORE-TO-DMZ rule 4 protocol udp
 set firewall name FROM-CORE-TO-DMZ rule 4 destination port 1053
+set firewall name FROM-CORE-TO-DMZ rule 5 description "Accept ICMP to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-DMZ rule 5 action accept
+set firewall name FROM-CORE-TO-DMZ rule 5 protocol icmp
+set firewall name FROM-CORE-TO-DMZ rule 5 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 6 description "Allow SSH to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-DMZ rule 6 action accept
+set firewall name FROM-CORE-TO-DMZ rule 6 protocol tcp
+set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 6 destination port 2022
 set zone-policy zone DMZ from CORE firewall name FROM-CORE-TO-DMZ
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections to Core"
 set firewall name TO-CORE rule 1 action accept
@@ -209,50 +245,91 @@ set interfaces ethernet eth2 address 10.0.16.111/24
 set protocols ospf area 0 network 10.0.12.0/24
 set protocols ospf area 0 network 10.0.13.0/24
 set protocols ospf area 0 network 10.0.16.0/24
-set protocols static table 10 route 0.0.0.0/0 next-hop 127.0.0.1
-set policy route VLAN10-TO-VLAN20 rule 1 description "Force V10-V20 via loopback"
-set policy route VLAN10-TO-VLAN20 rule 1 source address 10.10.0.0/24
-set policy route VLAN10-TO-VLAN20 rule 1 destination address 10.20.0.0/24
-set policy route VLAN10-TO-VLAN20 rule 1 set table 10
-set policy route VLAN20-TO-VLAN10 rule 1 description "Force V20-V10 via loopback"
-set policy route VLAN20-TO-VLAN10 rule 1 source address 10.20.0.0/24
-set policy route VLAN20-TO-VLAN10 rule 1 destination address 10.10.0.0/24
-set policy route VLAN20-TO-VLAN10 rule 1 set table 10
-set interfaces ethernet eth2 policy route VLAN10-TO-VLAN20
-set interfaces ethernet eth2 policy route VLAN20-TO-VLAN10
+# set protocols static table 10 route 0.0.0.0/0 next-hop 127.0.0.1
+# set policy route VLAN10-TO-VLAN20 rule 1 description "Force V10-V20 via loopback"
+# set policy route VLAN10-TO-VLAN20 rule 1 source address 10.10.0.0/24
+# set policy route VLAN10-TO-VLAN20 rule 1 destination address 10.20.0.0/24
+# set policy route VLAN10-TO-VLAN20 rule 1 set table 10
+# set policy route VLAN20-TO-VLAN10 rule 1 description "Force V20-V10 via loopback"
+# set policy route VLAN20-TO-VLAN10 rule 1 source address 10.20.0.0/24
+# set policy route VLAN20-TO-VLAN10 rule 1 destination address 10.10.0.0/24
+# set policy route VLAN20-TO-VLAN10 rule 1 set table 10
+# set interfaces ethernet eth2 policy route VLAN10-TO-VLAN20
+# set interfaces ethernet eth2 policy route VLAN20-TO-VLAN10
 set zone-policy zone CORE description "Core"
 set zone-policy zone CORE interface eth0
 set zone-policy zone CORE interface eth1
 set zone-policy zone BUILDINGS description "Buildings"
 set zone-policy zone BUILDINGS interface eth2
-set firewall name BUILDINGS-TO-LOOPBACK rule 1 description "Accept SIP with TCP/UDP on port 5060"
-set firewall name BUILDINGS-TO-LOOPBACK rule 1 action accept
-set firewall name BUILDINGS-TO-LOOPBACK rule 1 protocol tcp_udp
-set firewall name BUILDINGS-TO-LOOPBACK rule 1 source address 10.10.0.0/24
-set firewall name BUILDINGS-TO-LOOPBACK rule 1 destination address 10.20.0.0/24
-set firewall name BUILDINGS-TO-LOOPBACK rule 1 destination port 5060
-set firewall name BUILDINGS-TO-LOOPBACK rule 2 description "Accept SIP with SCTP on port 5060"
-set firewall name BUILDINGS-TO-LOOPBACK rule 2 action accept
-set firewall name BUILDINGS-TO-LOOPBACK rule 2 protocol sctp
-set firewall name BUILDINGS-TO-LOOPBACK rule 2 source address 10.10.0.0/24
-set firewall name BUILDINGS-TO-LOOPBACK rule 2 destination address 10.20.0.0/24
-set firewall name BUILDINGS-TO-LOOPBACK rule 3 description "Accept SIP with TCP/UDP on port 5060"
-set firewall name BUILDINGS-TO-LOOPBACK rule 3 action accept
-set firewall name BUILDINGS-TO-LOOPBACK rule 3 protocol tcp_udp
-set firewall name BUILDINGS-TO-LOOPBACK rule 3 source address 10.20.0.0/24
-set firewall name BUILDINGS-TO-LOOPBACK rule 3 destination address 10.10.0.0/24
-set firewall name BUILDINGS-TO-LOOPBACK rule 3 destination port 5060
-set firewall name BUILDINGS-TO-LOOPBACK rule 4 description "Accept SIP with SCTP on port 5060"
-set firewall name BUILDINGS-TO-LOOPBACK rule 4 action accept
-set firewall name BUILDINGS-TO-LOOPBACK rule 4 protocol sctp
-set firewall name BUILDINGS-TO-LOOPBACK rule 4 source address 10.20.0.0/24
-set firewall name BUILDINGS-TO-LOOPBACK rule 4 destination address 10.10.0.0/24
-set firewall name LOOPBACK-TO-BUILDINGS rule 1 description "Accept Established-Related Connections"
-set firewall name LOOPBACK-TO-BUILDINGS rule 1 action accept
-set firewall name LOOPBACK-TO-BUILDINGS rule 1 state established enable
-set firewall name LOOPBACK-TO-BUILDINGS rule 1 state related enable
-set zone-policy zone local-zone from BUILDINGS firewall name BUILDINGS-TO-LOOPBACK
-set zone-policy zone BUILDINGS from local-zone firewall name LOOPBACK-TO-BUILDINGS
+set firewall name BUILDINGS-TO-CORE rule 1 description "Accept TCP/UDP on port 80"
+set firewall name BUILDINGS-TO-CORE rule 1 action accept
+set firewall name BUILDINGS-TO-CORE rule 1 protocol tcp_udp
+set firewall name BUILDINGS-TO-CORE rule 1 destination port 80
+set firewall name BUILDINGS-TO-CORE rule 2 description "Accept TCP/UDP on port 443"
+set firewall name BUILDINGS-TO-CORE rule 2 action accept
+set firewall name BUILDINGS-TO-CORE rule 2 protocol tcp_udp
+set firewall name BUILDINGS-TO-CORE rule 2 destination port 443
+set firewall name BUILDINGS-TO-CORE rule 4 description "Accept IMAP (TCP) on port 1993"
+set firewall name BUILDINGS-TO-CORE rule 4 action accept
+set firewall name BUILDINGS-TO-CORE rule 4 protocol tcp
+set firewall name BUILDINGS-TO-CORE rule 4 destination port 1993
+set firewall name BUILDINGS-TO-CORE rule 5 description "Accept SMTP (TCP) on port 1025"
+set firewall name BUILDINGS-TO-CORE rule 5 action accept
+set firewall name BUILDINGS-TO-CORE rule 5 protocol tcp
+set firewall name BUILDINGS-TO-CORE rule 5 destination port 1025
+set firewall name BUILDINGS-TO-CORE rule 6 description "Accept DNS (TCP/UDP) on port 1053"
+set firewall name BUILDINGS-TO-CORE rule 6 action accept
+set firewall name BUILDINGS-TO-CORE rule 6 protocol tcp_udp
+set firewall name BUILDINGS-TO-CORE rule 6 destination port 1053
+set firewall name BUILDINGS-TO-CORE rule 7 description "Accept TCP on port 3306"
+set firewall name BUILDINGS-TO-CORE rule 7 action accept
+set firewall name BUILDINGS-TO-CORE rule 7 protocol tcp
+set firewall name BUILDINGS-TO-CORE rule 7 source address 10.20.0.0/24
+set firewall name BUILDINGS-TO-CORE rule 7 destination address 10.100.2.0/24
+set firewall name BUILDINGS-TO-CORE rule 7 destination port 3306
+set firewall name BUILDINGS-TO-CORE rule 8 description "Accept Admin (ICMP) to Core"
+set firewall name BUILDINGS-TO-CORE rule 8 action accept
+set firewall name BUILDINGS-TO-CORE rule 8 protocol icmp
+set firewall name BUILDINGS-TO-CORE rule 8 source address 10.1.0.10/24
+set firewall name BUILDINGS-TO-CORE rule 9 description "Allow SSH to Core"
+set firewall name BUILDINGS-TO-CORE rule 9 action accept
+set firewall name BUILDINGS-TO-CORE rule 9 protocol tcp
+set firewall name BUILDINGS-TO-CORE rule 9 source address 10.1.0.10/24
+set firewall name BUILDINGS-TO-CORE rule 9 destination port 2022
+set zone-policy zone CORE from BUILDINGS firewall name BUILDINGS-TO-CORE
+set firewall name CORE-TO-BUILDINGS rule 1 description "Accept Established-Related Connections to Buildings"
+set firewall name CORE-TO-BUILDINGS rule 1 action accept
+set firewall name CORE-TO-BUILDINGS rule 1 state established enable
+set firewall name CORE-TO-BUILDINGS rule 1 state related enable
+set zone-policy zone BUILDINGS from CORE firewall name CORE-TO-BUILDINGS
+# set firewall name BUILDINGS-TO-LOOPBACK rule 1 description "Accept SIP with TCP/UDP on port 5060"
+# set firewall name BUILDINGS-TO-LOOPBACK rule 1 action accept
+# set firewall name BUILDINGS-TO-LOOPBACK rule 1 protocol tcp_udp
+# set firewall name BUILDINGS-TO-LOOPBACK rule 1 source address 10.10.0.0/24
+# set firewall name BUILDINGS-TO-LOOPBACK rule 1 destination address 10.20.0.0/24
+# set firewall name BUILDINGS-TO-LOOPBACK rule 1 destination port 5060
+# set firewall name BUILDINGS-TO-LOOPBACK rule 2 description "Accept SIP with SCTP on port 5060"
+# set firewall name BUILDINGS-TO-LOOPBACK rule 2 action accept
+# set firewall name BUILDINGS-TO-LOOPBACK rule 2 protocol sctp
+# set firewall name BUILDINGS-TO-LOOPBACK rule 2 source address 10.10.0.0/24
+# set firewall name BUILDINGS-TO-LOOPBACK rule 2 destination address 10.20.0.0/24
+# set firewall name BUILDINGS-TO-LOOPBACK rule 3 description "Accept SIP with TCP/UDP on port 5060"
+# set firewall name BUILDINGS-TO-LOOPBACK rule 3 action accept
+# set firewall name BUILDINGS-TO-LOOPBACK rule 3 protocol tcp_udp
+# set firewall name BUILDINGS-TO-LOOPBACK rule 3 source address 10.20.0.0/24
+# set firewall name BUILDINGS-TO-LOOPBACK rule 3 destination address 10.10.0.0/24
+# set firewall name BUILDINGS-TO-LOOPBACK rule 3 destination port 5060
+# set firewall name BUILDINGS-TO-LOOPBACK rule 4 description "Accept SIP with SCTP on port 5060"
+# set firewall name BUILDINGS-TO-LOOPBACK rule 4 action accept
+# set firewall name BUILDINGS-TO-LOOPBACK rule 4 protocol sctp
+# set firewall name BUILDINGS-TO-LOOPBACK rule 4 source address 10.20.0.0/24
+# set firewall name BUILDINGS-TO-LOOPBACK rule 4 destination address 10.10.0.0/24
+# set firewall name LOOPBACK-TO-BUILDINGS rule 1 description "Accept Established-Related Connections"
+# set firewall name LOOPBACK-TO-BUILDINGS rule 1 action accept
+# set firewall name LOOPBACK-TO-BUILDINGS rule 1 state established enable
+# set firewall name LOOPBACK-TO-BUILDINGS rule 1 state related enable
+# set zone-policy zone local-zone from BUILDINGS firewall name BUILDINGS-TO-LOOPBACK
+# set zone-policy zone BUILDINGS from local-zone firewall name LOOPBACK-TO-BUILDINGS
 commit
 save
 ```
@@ -294,10 +371,43 @@ set firewall name FROM-CORE-TO-DC rule 3 protocol tcp
 set firewall name FROM-CORE-TO-DC rule 3 source address 10.20.0.0/24
 set firewall name FROM-CORE-TO-DC rule 3 destination address 10.100.2.0/24
 set firewall name FROM-CORE-TO-DC rule 3 destination port 3306
+set firewall name FROM-CORE-TO-DC rule 4 description "Accept Established-Related Connections to Datacenter"
+set firewall name FROM-CORE-TO-DC rule 4 action accept
+set firewall name FROM-CORE-TO-DC rule 4 state established enable
+set firewall name FROM-CORE-TO-DC rule 4 state related enable
+set firewall name FROM-CORE-TO-DC rule 5 description "Accept ICMP to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-DC rule 5 action accept
+set firewall name FROM-CORE-TO-DC rule 5 protocol icmp
+set firewall name FROM-CORE-TO-DC rule 5 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DC rule 6 description "Allow SSH to Datacenter from Admin device"
+set firewall name FROM-CORE-TO-DC rule 6 action accept
+set firewall name FROM-CORE-TO-DC rule 6 protocol tcp
+set firewall name FROM-CORE-TO-DC rule 6 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DC rule 6 destination port 2022
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections"
 set firewall name TO-CORE rule 1 action accept
 set firewall name TO-CORE rule 1 state established enable
 set firewall name TO-CORE rule 1 state related enable
+set firewall name TO-CORE rule 2 description "Accept TCP/UDP on port 80"
+set firewall name TO-CORE rule 2 action accept
+set firewall name TO-CORE rule 2 protocol tcp_udp
+set firewall name TO-CORE rule 2 destination port 80
+set firewall name TO-CORE rule 3 description "Accept TCP/UDP on port 443"
+set firewall name TO-CORE rule 3 action accept
+set firewall name TO-CORE rule 3 protocol tcp_udp
+set firewall name TO-CORE rule 3 destination port 443
+set firewall name TO-CORE rule 4 description "Accept IMAP (TCP) on port 1993"
+set firewall name TO-CORE rule 4 action accept
+set firewall name TO-CORE rule 4 protocol tcp
+set firewall name TO-CORE rule 4 destination port 1993
+set firewall name TO-CORE rule 5 description "Accept SMTP (TCP) on port 1025"
+set firewall name TO-CORE rule 5 action accept
+set firewall name TO-CORE rule 5 protocol tcp
+set firewall name TO-CORE rule 5 destination port 1025
+set firewall name TO-CORE rule 6 description "Accept DNS (UDP) on port 1053"
+set firewall name TO-CORE rule 6 action accept
+set firewall name TO-CORE rule 6 protocol udp
+set firewall name TO-CORE rule 6 destination port 1053
 set zone-policy zone DATACENTER from CORE firewall name FROM-CORE-TO-DC
 set zone-policy zone CORE from DATACENTER firewall name TO-CORE
 commit

@@ -250,3 +250,50 @@ ip http secure-server
 end
 write
 ```
+
+## DMZ-WEB
+
+```
+conf t 
+no ip routing
+interface f0/0
+ip address 200.0.0.10 255.255.255.128
+no shut
+ip default-gateway 200.0.0.1
+ip http secure-port 443
+ip http secure-server
+end
+write
+```
+
+## DMZ-EMAIL
+
+```
+conf t 
+no ip routing
+interface f0/0
+ip address 200.0.0.130 255.255.255.192
+no shut
+ip default-gateway 200.0.0.129
+ip http port 1025
+ip http server
+ip http secure-port 1993
+ip http secure-server
+end
+write
+```
+
+## DMZ-DNS
+
+```
+conf t 
+no ip routing
+interface f0/0
+ip address 200.0.0.200 255.255.255.192
+no shut
+ip default-gateway 200.0.0.193
+ip http secure-port 1053
+ip http secure-server
+end
+write
+```

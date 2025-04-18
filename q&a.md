@@ -37,3 +37,5 @@ Não, a gateway do PC da internet é o IP da FW Stateless.
 ### A DMZ tem acesso à Internet (ou tem só established/related)?
 
 ### É preciso fazer mesmo SSH com o dispositivo do Admin ou é só preciso estabelecer regras para o porto 22 (2022 por causa dos pings)?
+
+### O admin pode também pingar e fazer SSH para a Internet (passar das stateless para cima)?

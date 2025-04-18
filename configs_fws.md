@@ -9,6 +9,27 @@ set protocols static route 0.0.0.0/0 next-hop 100.0.0.9
 set interfaces ethernet eth0 address 100.0.0.129/26
 set interfaces ethernet eth1 address 100.0.0.2/30
 set interfaces ethernet eth2 address 100.0.0.10/30
+set firewall name EDGE-IN default-action drop
+set firewall name EDGE-IN rule 1 action drop
+set firewall name EDGE-IN rule 1 state invalid enable
+set firewall name EDGE-IN rule 2 action drop
+set firewall name EDGE-IN rule 2 fragment match-frag
+set firewall name EDGE-IN rule 3 action accept
+set firewall name EDGE-IN rule 3 protocol tcp_udp
+set firewall name EDGE-IN rule 3 destination port 443
+set firewall name EDGE-IN rule 4 action accept
+set firewall name EDGE-IN rule 4 protocol tcp
+set firewall name EDGE-IN rule 4 destination port 1025
+set firewall name EDGE-IN rule 5 action accept
+set firewall name EDGE-IN rule 5 protocol tcp
+set firewall name EDGE-IN rule 5 destination port 1993
+set firewall name EDGE-IN rule 6 action accept
+set firewall name EDGE-IN rule 6 protocol udp
+set firewall name EDGE-IN rule 6 destination port 1053
+set firewall name EDGE-IN rule 7 action accept
+set firewall name EDGE-IN rule 7 protocol tcp_udp
+set firewall name EDGE-IN rule 7 source port 80,443
+set interfaces ethernet eth0 firewall in name EDGE-IN
 commit
 save
 ```
@@ -22,6 +43,27 @@ set protocols static route 0.0.0.0/0 next-hop 100.0.0.13
 set interfaces ethernet eth0 address 100.0.0.193/26
 set interfaces ethernet eth1 address 100.0.0.6/30
 set interfaces ethernet eth2 address 100.0.0.14/30
+set firewall name EDGE-IN default-action drop
+set firewall name EDGE-IN rule 1 action drop
+set firewall name EDGE-IN rule 1 state invalid enable
+set firewall name EDGE-IN rule 2 action drop
+set firewall name EDGE-IN rule 2 fragment match-frag
+set firewall name EDGE-IN rule 3 action accept
+set firewall name EDGE-IN rule 3 protocol tcp_udp
+set firewall name EDGE-IN rule 3 destination port 443
+set firewall name EDGE-IN rule 4 action accept
+set firewall name EDGE-IN rule 4 protocol tcp
+set firewall name EDGE-IN rule 4 destination port 1025
+set firewall name EDGE-IN rule 5 action accept
+set firewall name EDGE-IN rule 5 protocol tcp
+set firewall name EDGE-IN rule 5 destination port 1993
+set firewall name EDGE-IN rule 6 action accept
+set firewall name EDGE-IN rule 6 protocol udp
+set firewall name EDGE-IN rule 6 destination port 1053
+set firewall name EDGE-IN rule 7 action accept
+set firewall name EDGE-IN rule 7 protocol tcp_udp
+set firewall name EDGE-IN rule 7 source port 80,443
+set interfaces ethernet eth0 firewall in name EDGE-IN
 commit
 save
 ```

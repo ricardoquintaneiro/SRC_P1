@@ -287,17 +287,27 @@ set interfaces ethernet eth2 address 10.0.16.111/24
 set protocols ospf area 0 network 10.0.12.0/24
 set protocols ospf area 0 network 10.0.13.0/24
 set protocols ospf area 0 network 10.0.16.0/24
-# set protocols static table 10 route 0.0.0.0/0 next-hop 127.0.0.1
-# set policy route VLAN10-TO-VLAN20 rule 1 description "Force V10-V20 via loopback"
-# set policy route VLAN10-TO-VLAN20 rule 1 source address 10.10.0.0/24
-# set policy route VLAN10-TO-VLAN20 rule 1 destination address 10.20.0.0/24
-# set policy route VLAN10-TO-VLAN20 rule 1 set table 10
-# set policy route VLAN20-TO-VLAN10 rule 1 description "Force V20-V10 via loopback"
-# set policy route VLAN20-TO-VLAN10 rule 1 source address 10.20.0.0/24
-# set policy route VLAN20-TO-VLAN10 rule 1 destination address 10.10.0.0/24
-# set policy route VLAN20-TO-VLAN10 rule 1 set table 10
-# set interfaces ethernet eth2 policy route VLAN10-TO-VLAN20
-# set interfaces ethernet eth2 policy route VLAN20-TO-VLAN10
+set firewall name V10-20-SIP-ONLY default-action accept
+set firewall name V10-20-SIP-ONLY rule 1 action accept
+set firewall name V10-20-SIP-ONLY rule 1 state established enable
+set firewall name V10-20-SIP-ONLY rule 1 state related enable
+set firewall name V10-20-SIP-ONLY rule 2 action accept
+set firewall name V10-20-SIP-ONLY rule 2 protocol udp
+set firewall name V10-20-SIP-ONLY rule 2 source address 10.10.0.0/24
+set firewall name V10-20-SIP-ONLY rule 2 destination address 10.20.0.0/24
+set firewall name V10-20-SIP-ONLY rule 2 destination port 5060
+set firewall name V10-20-SIP-ONLY rule 3 action accept
+set firewall name V10-20-SIP-ONLY rule 3 protocol udp
+set firewall name V10-20-SIP-ONLY rule 3 source address 10.20.0.0/24
+set firewall name V10-20-SIP-ONLY rule 3 destination address 10.10.0.0/24
+set firewall name V10-20-SIP-ONLY rule 3 destination port 5060
+set firewall name V10-20-SIP-ONLY rule 4 action drop
+set firewall name V10-20-SIP-ONLY rule 4 source address 10.10.0.0/24
+set firewall name V10-20-SIP-ONLY rule 4 destination address 10.20.0.0/24
+set firewall name V10-20-SIP-ONLY rule 5 action drop
+set firewall name V10-20-SIP-ONLY rule 5 source address 10.20.0.0/24
+set firewall name V10-20-SIP-ONLY rule 5 destination address 10.10.0.0/24
+set interfaces ethernet eth2 firewall in name V10-20-SIP-ONLY
 set zone-policy zone CORE description "Core"
 set zone-policy zone CORE interface eth0
 set zone-policy zone CORE interface eth1
@@ -344,34 +354,6 @@ set firewall name CORE-TO-BUILDINGS rule 1 action accept
 set firewall name CORE-TO-BUILDINGS rule 1 state established enable
 set firewall name CORE-TO-BUILDINGS rule 1 state related enable
 set zone-policy zone BUILDINGS from CORE firewall name CORE-TO-BUILDINGS
-# set firewall name BUILDINGS-TO-LOOPBACK rule 1 description "Accept SIP with TCP/UDP on port 5060"
-# set firewall name BUILDINGS-TO-LOOPBACK rule 1 action accept
-# set firewall name BUILDINGS-TO-LOOPBACK rule 1 protocol tcp_udp
-# set firewall name BUILDINGS-TO-LOOPBACK rule 1 source address 10.10.0.0/24
-# set firewall name BUILDINGS-TO-LOOPBACK rule 1 destination address 10.20.0.0/24
-# set firewall name BUILDINGS-TO-LOOPBACK rule 1 destination port 5060
-# set firewall name BUILDINGS-TO-LOOPBACK rule 2 description "Accept SIP with SCTP on port 5060"
-# set firewall name BUILDINGS-TO-LOOPBACK rule 2 action accept
-# set firewall name BUILDINGS-TO-LOOPBACK rule 2 protocol sctp
-# set firewall name BUILDINGS-TO-LOOPBACK rule 2 source address 10.10.0.0/24
-# set firewall name BUILDINGS-TO-LOOPBACK rule 2 destination address 10.20.0.0/24
-# set firewall name BUILDINGS-TO-LOOPBACK rule 3 description "Accept SIP with TCP/UDP on port 5060"
-# set firewall name BUILDINGS-TO-LOOPBACK rule 3 action accept
-# set firewall name BUILDINGS-TO-LOOPBACK rule 3 protocol tcp_udp
-# set firewall name BUILDINGS-TO-LOOPBACK rule 3 source address 10.20.0.0/24
-# set firewall name BUILDINGS-TO-LOOPBACK rule 3 destination address 10.10.0.0/24
-# set firewall name BUILDINGS-TO-LOOPBACK rule 3 destination port 5060
-# set firewall name BUILDINGS-TO-LOOPBACK rule 4 description "Accept SIP with SCTP on port 5060"
-# set firewall name BUILDINGS-TO-LOOPBACK rule 4 action accept
-# set firewall name BUILDINGS-TO-LOOPBACK rule 4 protocol sctp
-# set firewall name BUILDINGS-TO-LOOPBACK rule 4 source address 10.20.0.0/24
-# set firewall name BUILDINGS-TO-LOOPBACK rule 4 destination address 10.10.0.0/24
-# set firewall name LOOPBACK-TO-BUILDINGS rule 1 description "Accept Established-Related Connections"
-# set firewall name LOOPBACK-TO-BUILDINGS rule 1 action accept
-# set firewall name LOOPBACK-TO-BUILDINGS rule 1 state established enable
-# set firewall name LOOPBACK-TO-BUILDINGS rule 1 state related enable
-# set zone-policy zone local-zone from BUILDINGS firewall name BUILDINGS-TO-LOOPBACK
-# set zone-policy zone BUILDINGS from local-zone firewall name LOOPBACK-TO-BUILDINGS
 commit
 save
 ```

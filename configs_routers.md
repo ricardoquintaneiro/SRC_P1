@@ -23,6 +23,10 @@ int f1/1
 ip addr 10.0.1.1 255.255.255.0
 ip ospf 1 area 0
 no shut
+int f2/0
+ip addr 10.0.18.1 255.255.255.0
+ip ospf 1 area 0
+no shut
 exit
 access-list 1 permit 10.0.0.0 0.0.255.255
 access-list 1 permit 10.10.0.0 0.0.0.255
@@ -41,6 +45,8 @@ ip nat outside
 int f1/0
 ip nat inside
 int f1/1
+ip nat inside
+int f2/0
 ip nat inside
 end
 write
@@ -69,6 +75,10 @@ int f1/1
 ip addr 10.0.2.2 255.255.255.0
 ip ospf 1 area 0
 no shut
+int f2/0
+ip addr 10.0.19.2 255.255.255.0
+ip ospf 1 area 0
+no shut
 exit
 access-list 1 permit 10.0.0.0 0.0.255.255
 access-list 1 permit 10.10.0.0 0.0.0.255
@@ -87,6 +97,8 @@ ip nat outside
 int f1/0
 ip nat inside
 int f1/1
+ip nat inside
+int f2/0
 ip nat inside
 end
 write

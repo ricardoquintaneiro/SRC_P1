@@ -71,15 +71,21 @@ configure
 set interfaces ethernet eth0 address 10.0.3.101/24
 set interfaces ethernet eth1 address 10.0.5.101/24
 set interfaces ethernet eth2 address 10.0.7.101/24
+set interfaces ethernet eth3 address 10.0.20.101/24
+set interfaces ethernet eth4 address 10.0.23.101/24
 set protocols ospf area 0 network 10.0.3.0/24
 set protocols ospf area 0 network 10.0.5.0/24
 set protocols ospf area 0 network 10.0.7.0/24
+set protocols ospf area 0 network 10.0.20.0/24
+set protocols ospf area 0 network 10.0.23.0/24
 set zone-policy zone OUTSIDE description "Outside/Internet"
 set zone-policy zone OUTSIDE interface eth0
+set zone-policy zone OUTSIDE interface eth3
 set zone-policy zone DMZ description "DMZ"
 set zone-policy zone DMZ interface eth1
 set zone-policy zone CORE description "Core"
 set zone-policy zone CORE interface eth2
+set zone-policy zone CORE interface eth4
 set firewall name FROM-DMZ-TO-OUTSIDE rule 1 description "Accept Internet from DMZ on port 80"
 set firewall name FROM-DMZ-TO-OUTSIDE rule 1 action accept
 set firewall name FROM-DMZ-TO-OUTSIDE rule 1 protocol tcp_udp
@@ -175,15 +181,21 @@ configure
 set interfaces ethernet eth0 address 10.0.4.102/24
 set interfaces ethernet eth1 address 10.0.6.102/24
 set interfaces ethernet eth2 address 10.0.8.102/24
+set interfaces ethernet eth3 address 10.0.21.102/24
+set interfaces ethernet eth4 address 10.0.24.102/24
 set protocols ospf area 0 network 10.0.4.0/24
 set protocols ospf area 0 network 10.0.6.0/24
 set protocols ospf area 0 network 10.0.8.0/24
+set protocols ospf area 0 network 10.0.21.0/24
+set protocols ospf area 0 network 10.0.24.0/24
 set zone-policy zone OUTSIDE description "Outside/Internet"
 set zone-policy zone OUTSIDE interface eth0
+set zone-policy zone OUTSIDE interface eth3
 set zone-policy zone DMZ description "DMZ"
 set zone-policy zone DMZ interface eth1
 set zone-policy zone CORE description "Core"
 set zone-policy zone CORE interface eth2
+set zone-policy zone CORE interface eth4
 set firewall name FROM-DMZ-TO-OUTSIDE rule 1 description "Accept TCP/UDP from DMZ on port 80"
 set firewall name FROM-DMZ-TO-OUTSIDE rule 1 action accept
 set firewall name FROM-DMZ-TO-OUTSIDE rule 1 protocol tcp_udp

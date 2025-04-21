@@ -203,6 +203,21 @@ write
 ```
 conf t
 ip routing
+ip access-list extended MATCH-INTRANET
+permit ip 10.100.0.0 0.0.0.255 any
+ip access-list extended MATCH-IDNS
+permit ip 10.100.1.0 0.0.0.255 any
+ip access-list extended MATCH-DATABASES
+permit ip 10.100.2.0 0.0.0.255 any
+route-map TO-FIREWALL permit 10
+match ip address MATCH-INTRANET
+set ip next-hop 10.0.17.121
+route-map TO-FIREWALL permit 20
+match ip address MATCH-IDNS
+set ip next-hop 10.0.17.121
+route-map TO-FIREWALL permit 30
+match ip address MATCH-DATABASES
+set ip next-hop 10.0.17.121
 int f0/0
 ip addr 10.0.17.42 255.255.255.0
 ip ospf 1 area 0
@@ -211,6 +226,7 @@ int f0/1
 ip addr 10.100.0.1 255.255.255.0
 ip addr 10.100.1.1 255.255.255.0 secondary
 ip addr 10.100.2.1 255.255.255.0 secondary
+ip policy route-map TO-FIREWALL
 ip ospf 1 area 0
 no shut
 end

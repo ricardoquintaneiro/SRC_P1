@@ -12,8 +12,6 @@ set interfaces ethernet eth2 address 100.0.0.10/30
 set firewall name EDGE-IN default-action drop
 set firewall name EDGE-IN rule 1 action drop
 set firewall name EDGE-IN rule 1 state invalid enable
-set firewall name EDGE-IN rule 2 action drop
-set firewall name EDGE-IN rule 2 fragment match-frag
 set firewall name EDGE-IN rule 3 action accept
 set firewall name EDGE-IN rule 3 protocol tcp_udp
 set firewall name EDGE-IN rule 3 destination port 443
@@ -46,8 +44,6 @@ set interfaces ethernet eth2 address 100.0.0.14/30
 set firewall name EDGE-IN default-action drop
 set firewall name EDGE-IN rule 1 action drop
 set firewall name EDGE-IN rule 1 state invalid enable
-set firewall name EDGE-IN rule 2 action drop
-set firewall name EDGE-IN rule 2 fragment match-frag
 set firewall name EDGE-IN rule 3 action accept
 set firewall name EDGE-IN rule 3 protocol tcp_udp
 set firewall name EDGE-IN rule 3 destination port 443
@@ -368,6 +364,29 @@ set interfaces ethernet eth2 address 10.0.17.121/24
 set protocols ospf area 0 network 10.0.14.0/24
 set protocols ospf area 0 network 10.0.15.0/24
 set protocols ospf area 0 network 10.0.17.0/24
+set firewall name INTRA-DATACENTER default-action accept
+set firewall name INTRA-DATACENTER rule 1 action accept
+set firewall name INTRA-DATACENTER rule 1 state established enable
+set firewall name INTRA-DATACENTER rule 1 state related enable
+set firewall name INTRA-DATACENTER rule 2 action drop
+set firewall name INTRA-DATACENTER rule 2 source address 10.100.0.0/24
+set firewall name INTRA-DATACENTER rule 2 destination address 10.100.1.0/24
+set firewall name INTRA-DATACENTER rule 3 action drop
+set firewall name INTRA-DATACENTER rule 3 source address 10.100.0.0/24
+set firewall name INTRA-DATACENTER rule 3 destination address 10.100.2.0/24
+set firewall name INTRA-DATACENTER rule 4 action drop
+set firewall name INTRA-DATACENTER rule 4 source address 10.100.1.0/24
+set firewall name INTRA-DATACENTER rule 4 destination address 10.100.0.0/24
+set firewall name INTRA-DATACENTER rule 5 action drop
+set firewall name INTRA-DATACENTER rule 5 source address 10.100.1.0/24
+set firewall name INTRA-DATACENTER rule 5 destination address 10.100.2.0/24
+set firewall name INTRA-DATACENTER rule 6 action drop
+set firewall name INTRA-DATACENTER rule 6 source address 10.100.2.0/24
+set firewall name INTRA-DATACENTER rule 6 destination address 10.100.0.0/24
+set firewall name INTRA-DATACENTER rule 7 action drop
+set firewall name INTRA-DATACENTER rule 7 source address 10.100.2.0/24
+set firewall name INTRA-DATACENTER rule 7 destination address 10.100.1.0/24
+set interfaces ethernet eth2 firewall in name INTRA-DATACENTER
 set zone-policy zone CORE description "Core"
 set zone-policy zone CORE interface eth0
 set zone-policy zone CORE interface eth1

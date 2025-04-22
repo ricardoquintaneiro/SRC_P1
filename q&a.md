@@ -24,18 +24,16 @@ Não, a gateway do PC da internet é o IP da FW Stateless.
 
 ## 2ª semana
 
-### (Opcional) Podemos sicronizar as definições das FW Stateless?
+### Temos o NAT nos routers de saída, não seria melhor nas firewalls stateful do core?
 
 ### Tráfego do Datacenter tmb tem de ir à FW?
 
-### OSPF tem de ser configurado para as redes intermédias (router a router)?
-
-### Não faz sentido ter um load balancer antes das FW Stateless?
+### OSPF tem de ser configurado para as redes intermédias (router a router)? Pode/Deve ser redistribuido para não ter tabelas gigantes?
 
 ### Em relação à security policy nº 1 do enunciado, como é que é suposto aguentar ataques de DDoS? É criar um script como estava no guião?
 
 ### A DMZ tem acesso à Internet (ou tem só established/related)?
 
-### É preciso fazer mesmo SSH com o dispositivo do Admin ou é só preciso estabelecer regras para o porto 22 (2022 por causa dos pings)?
+### É preciso fazer mesmo SSH com o dispositivo do Admin ou é só preciso estabelecer regras para o porto 22 (2022 por causa dos pings TCP)?
 
 ### O admin pode também pingar e fazer SSH para a Internet (passar das stateless para cima)?

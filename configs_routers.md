@@ -321,18 +321,3 @@ ip http secure-server
 end
 write
 ```
-
-## DMZ-DNS
-
-```
-conf t 
-no ip routing
-interface f0/0
-ip address 200.0.0.200 255.255.255.192
-no shut
-ip default-gateway 200.0.0.193
-ip http secure-port 1053
-ip http secure-server
-end
-write
-```

@@ -4,11 +4,12 @@
 
 ```
 configure
-set protocols static route 0.0.0.0/0 next-hop 100.0.0.1
-set protocols static route 0.0.0.0/0 next-hop 100.0.0.9
 set interfaces ethernet eth0 address 100.0.0.129/26
 set interfaces ethernet eth1 address 100.0.0.2/30
 set interfaces ethernet eth2 address 100.0.0.10/30
+set protocols ospf area 0 network 100.0.0.0/30
+set protocols ospf area 0 network 100.0.0.8/30
+set protocols ospf redistribute connected
 set firewall name EDGE-IN default-action drop
 set firewall name EDGE-IN rule 1 action drop
 set firewall name EDGE-IN rule 1 state invalid enable
@@ -58,11 +59,12 @@ save
 
 ```
 configure
-set protocols static route 0.0.0.0/0 next-hop 100.0.0.5
-set protocols static route 0.0.0.0/0 next-hop 100.0.0.13
 set interfaces ethernet eth0 address 100.0.0.193/26
 set interfaces ethernet eth1 address 100.0.0.6/30
 set interfaces ethernet eth2 address 100.0.0.14/30
+set protocols ospf area 0 network 100.0.0.4/30
+set protocols ospf area 0 network 100.0.0.12/30
+set protocols ospf redistribute connected
 set firewall name EDGE-IN default-action drop
 set firewall name EDGE-IN rule 1 action drop
 set firewall name EDGE-IN rule 1 state invalid enable

@@ -177,11 +177,11 @@ set firewall name FROM-CORE-TO-OUTSIDE rule 2 destination port 443
 set firewall name FROM-CORE-TO-OUTSIDE rule 3 description "Accept ICMP to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-OUTSIDE rule 3 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 3 protocol icmp
-set firewall name FROM-CORE-TO-OUTSIDE rule 3 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 source address 10.1.0.10
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 description "Allow SSH to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 protocol tcp
-set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 2022
 set zone-policy zone OUTSIDE from CORE firewall name FROM-CORE-TO-OUTSIDE
 set firewall name FROM-CORE-TO-DMZ rule 1 description "Accept TCP/UDP to DMZ on port 443"
@@ -203,11 +203,11 @@ set firewall name FROM-CORE-TO-DMZ rule 4 destination port 1053
 set firewall name FROM-CORE-TO-DMZ rule 5 description "Accept ICMP to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DMZ rule 5 action accept
 set firewall name FROM-CORE-TO-DMZ rule 5 protocol icmp
-set firewall name FROM-CORE-TO-DMZ rule 5 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 5 source address 10.1.0.10
 set firewall name FROM-CORE-TO-DMZ rule 6 description "Allow SSH to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DMZ rule 6 action accept
 set firewall name FROM-CORE-TO-DMZ rule 6 protocol tcp
-set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10
 set firewall name FROM-CORE-TO-DMZ rule 6 destination port 2022
 set zone-policy zone DMZ from CORE firewall name FROM-CORE-TO-DMZ
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections to Core"
@@ -287,11 +287,11 @@ set firewall name FROM-CORE-TO-OUTSIDE rule 2 destination port 443
 set firewall name FROM-CORE-TO-OUTSIDE rule 3 description "Accept ICMP to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-OUTSIDE rule 3 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 3 protocol icmp
-set firewall name FROM-CORE-TO-OUTSIDE rule 3 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 3 source address 10.1.0.10
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 description "Allow SSH to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 protocol tcp
-set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 2022
 set zone-policy zone OUTSIDE from CORE firewall name FROM-CORE-TO-OUTSIDE
 set firewall name FROM-CORE-TO-DMZ rule 1 description "Accept TCP/UDP to DMZ on port 443"
@@ -313,11 +313,11 @@ set firewall name FROM-CORE-TO-DMZ rule 4 destination port 1053
 set firewall name FROM-CORE-TO-DMZ rule 5 description "Accept ICMP to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DMZ rule 5 action accept
 set firewall name FROM-CORE-TO-DMZ rule 5 protocol icmp
-set firewall name FROM-CORE-TO-DMZ rule 5 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 5 source address 10.1.0.10
 set firewall name FROM-CORE-TO-DMZ rule 6 description "Allow SSH to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DMZ rule 6 action accept
 set firewall name FROM-CORE-TO-DMZ rule 6 protocol tcp
-set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10
 set firewall name FROM-CORE-TO-DMZ rule 6 destination port 2022
 set zone-policy zone DMZ from CORE firewall name FROM-CORE-TO-DMZ
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections to Core"
@@ -396,11 +396,11 @@ set firewall name BUILDINGS-TO-CORE rule 7 destination port 3306
 set firewall name BUILDINGS-TO-CORE rule 8 description "Accept Admin (ICMP) to Core"
 set firewall name BUILDINGS-TO-CORE rule 8 action accept
 set firewall name BUILDINGS-TO-CORE rule 8 protocol icmp
-set firewall name BUILDINGS-TO-CORE rule 8 source address 10.1.0.10/24
+set firewall name BUILDINGS-TO-CORE rule 8 source address 10.1.0.10
 set firewall name BUILDINGS-TO-CORE rule 9 description "Allow SSH to Core"
 set firewall name BUILDINGS-TO-CORE rule 9 action accept
 set firewall name BUILDINGS-TO-CORE rule 9 protocol tcp
-set firewall name BUILDINGS-TO-CORE rule 9 source address 10.1.0.10/24
+set firewall name BUILDINGS-TO-CORE rule 9 source address 10.1.0.10
 set firewall name BUILDINGS-TO-CORE rule 9 destination port 2022
 set zone-policy zone CORE from BUILDINGS firewall name BUILDINGS-TO-CORE
 set firewall name CORE-TO-BUILDINGS rule 1 description "Accept Established-Related Connections to Buildings"
@@ -479,11 +479,11 @@ set firewall name FROM-CORE-TO-DC rule 4 state related enable
 set firewall name FROM-CORE-TO-DC rule 5 description "Accept ICMP to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DC rule 5 action accept
 set firewall name FROM-CORE-TO-DC rule 5 protocol icmp
-set firewall name FROM-CORE-TO-DC rule 5 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DC rule 5 source address 10.1.0.10
 set firewall name FROM-CORE-TO-DC rule 6 description "Allow SSH to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DC rule 6 action accept
 set firewall name FROM-CORE-TO-DC rule 6 protocol tcp
-set firewall name FROM-CORE-TO-DC rule 6 source address 10.1.0.10/24
+set firewall name FROM-CORE-TO-DC rule 6 source address 10.1.0.10
 set firewall name FROM-CORE-TO-DC rule 6 destination port 2022
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections"
 set firewall name TO-CORE rule 1 action accept

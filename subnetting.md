@@ -8,7 +8,7 @@ PC da Internet 1: `100.0.0.131`
 
 FW-ST1: `100.0.0.129`
 
-### INTERNET-2 - FW-ST2: 100.0.192/26
+### INTERNET-2 - FW-ST2: 100.0.0.192/26
 
 PC da Internet 2: `100.0.0.202`
 

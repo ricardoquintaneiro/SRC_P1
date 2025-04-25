@@ -10,27 +10,29 @@ set interfaces ethernet eth2 address 100.0.0.10/30
 set protocols ospf area 0 network 100.0.0.0/30
 set protocols ospf area 0 network 100.0.0.8/30
 set protocols ospf redistribute connected
+set firewall group network-group RESERVED-IPS network 0.0.0.0/8
+set firewall group network-group RESERVED-IPS network 10.0.0.0/8
+set firewall group network-group RESERVED-IPS network 100.64.0.0/10
+set firewall group network-group RESERVED-IPS network 127.0.0.0/8
+set firewall group network-group RESERVED-IPS network 169.254.0.0/16
+set firewall group network-group RESERVED-IPS network 172.16.0.0/12
+set firewall group network-group RESERVED-IPS network 192.0.0.0/24
+set firewall group network-group RESERVED-IPS network 192.0.2.0/24
+set firewall group network-group RESERVED-IPS network 192.88.99.0/24
+set firewall group network-group RESERVED-IPS network 192.168.0.0/16
+set firewall group network-group RESERVED-IPS network 198.18.0.0/15
+set firewall group network-group RESERVED-IPS network 198.51.100.0/24
+set firewall group network-group RESERVED-IPS network 203.0.113.0/24
+set firewall group network-group RESERVED-IPS network 224.0.0.0/4
+set firewall group network-group RESERVED-IPS network 240.0.0.0/4
+set firewall group network-group INTERNAL-IPS network 200.0.0.0/24
+set firewall group network-group INTERNAL-IPS network 100.0.0.0/25
 set firewall name EDGE-IN default-action drop
 set firewall name EDGE-IN rule 1 action drop
 set firewall name EDGE-IN rule 1 state invalid enable
 set firewall name EDGE-IN rule 2 description "Drop all private and reserved IPs"
 set firewall name EDGE-IN rule 2 action drop
-set firewall name EDGE-IN rule 2 source address 0.0.0.0/8
-set firewall name EDGE-IN rule 2 source address 10.0.0.0/8
-set firewall name EDGE-IN rule 2 source address 100.64.0.0/10
-set firewall name EDGE-IN rule 2 source address 127.0.0.0/8
-set firewall name EDGE-IN rule 2 source address 169.254.0.0/16
-set firewall name EDGE-IN rule 2 source address 172.16.0.0/12
-set firewall name EDGE-IN rule 2 source address 192.0.0.0/24
-set firewall name EDGE-IN rule 2 source address 192.0.2.0/24
-set firewall name EDGE-IN rule 2 source address 192.88.99.0/24
-set firewall name EDGE-IN rule 2 source address 192.168.0.0/16
-set firewall name EDGE-IN rule 2 source address 198.18.0.0/15
-set firewall name EDGE-IN rule 2 source address 198.51.100.0/24
-set firewall name EDGE-IN rule 2 source address 203.0.113.0/24
-set firewall name EDGE-IN rule 2 source address 224.0.0.0/4
-set firewall name EDGE-IN rule 2 source address 240.0.0.0/4
-set firewall name EDGE-IN rule 2 source address 255.255.255.255/32
+set firewall name EDGE-IN rule 2 source group network-group RESERVED-IPS
 set firewall name EDGE-IN rule 3 action accept
 set firewall name EDGE-IN rule 3 protocol tcp_udp
 set firewall name EDGE-IN rule 3 destination address 200.0.0.0/25
@@ -52,8 +54,7 @@ set firewall name EDGE-IN rule 7 protocol tcp_udp
 set firewall name EDGE-IN rule 7 source port 80,443
 set firewall name EDGE-IN rule 8 description "Drop traffic spoofing our public IPs"
 set firewall name EDGE-IN rule 8 action drop
-set firewall name EDGE-IN rule 8 source address 200.0.0.0/24
-set firewall name EDGE-IN rule 8 source address 100.0.0.0/25
+set firewall name EDGE-IN rule 8 source group network-group INTERNAL-IPS
 set interfaces ethernet eth0 firewall in name EDGE-IN
 commit
 save
@@ -69,27 +70,29 @@ set interfaces ethernet eth2 address 100.0.0.14/30
 set protocols ospf area 0 network 100.0.0.4/30
 set protocols ospf area 0 network 100.0.0.12/30
 set protocols ospf redistribute connected
+set firewall group network-group RESERVED-IPS network 0.0.0.0/8
+set firewall group network-group RESERVED-IPS network 10.0.0.0/8
+set firewall group network-group RESERVED-IPS network 100.64.0.0/10
+set firewall group network-group RESERVED-IPS network 127.0.0.0/8
+set firewall group network-group RESERVED-IPS network 169.254.0.0/16
+set firewall group network-group RESERVED-IPS network 172.16.0.0/12
+set firewall group network-group RESERVED-IPS network 192.0.0.0/24
+set firewall group network-group RESERVED-IPS network 192.0.2.0/24
+set firewall group network-group RESERVED-IPS network 192.88.99.0/24
+set firewall group network-group RESERVED-IPS network 192.168.0.0/16
+set firewall group network-group RESERVED-IPS network 198.18.0.0/15
+set firewall group network-group RESERVED-IPS network 198.51.100.0/24
+set firewall group network-group RESERVED-IPS network 203.0.113.0/24
+set firewall group network-group RESERVED-IPS network 224.0.0.0/4
+set firewall group network-group RESERVED-IPS network 240.0.0.0/4
+set firewall group network-group INTERNAL-IPS network 200.0.0.0/24
+set firewall group network-group INTERNAL-IPS network 100.0.0.0/25
 set firewall name EDGE-IN default-action drop
 set firewall name EDGE-IN rule 1 action drop
 set firewall name EDGE-IN rule 1 state invalid enable
 set firewall name EDGE-IN rule 2 description "Drop all private and reserved IPs"
 set firewall name EDGE-IN rule 2 action drop
-set firewall name EDGE-IN rule 2 source address 0.0.0.0/8
-set firewall name EDGE-IN rule 2 source address 10.0.0.0/8
-set firewall name EDGE-IN rule 2 source address 100.64.0.0/10
-set firewall name EDGE-IN rule 2 source address 127.0.0.0/8
-set firewall name EDGE-IN rule 2 source address 169.254.0.0/16
-set firewall name EDGE-IN rule 2 source address 172.16.0.0/12
-set firewall name EDGE-IN rule 2 source address 192.0.0.0/24
-set firewall name EDGE-IN rule 2 source address 192.0.2.0/24
-set firewall name EDGE-IN rule 2 source address 192.88.99.0/24
-set firewall name EDGE-IN rule 2 source address 192.168.0.0/16
-set firewall name EDGE-IN rule 2 source address 198.18.0.0/15
-set firewall name EDGE-IN rule 2 source address 198.51.100.0/24
-set firewall name EDGE-IN rule 2 source address 203.0.113.0/24
-set firewall name EDGE-IN rule 2 source address 224.0.0.0/4
-set firewall name EDGE-IN rule 2 source address 240.0.0.0/4
-set firewall name EDGE-IN rule 2 source address 255.255.255.255/32
+set firewall name EDGE-IN rule 2 source group network-group RESERVED-IPS
 set firewall name EDGE-IN rule 3 action accept
 set firewall name EDGE-IN rule 3 protocol tcp_udp
 set firewall name EDGE-IN rule 3 destination address 200.0.0.0/25
@@ -111,8 +114,7 @@ set firewall name EDGE-IN rule 7 protocol tcp_udp
 set firewall name EDGE-IN rule 7 source port 80,443
 set firewall name EDGE-IN rule 8 description "Drop traffic spoofing our public IPs"
 set firewall name EDGE-IN rule 8 action drop
-set firewall name EDGE-IN rule 8 source address 200.0.0.0/24
-set firewall name EDGE-IN rule 8 source address 100.0.0.0/25
+set firewall name EDGE-IN rule 8 source group network-group INTERNAL-IPS
 set interfaces ethernet eth0 firewall in name EDGE-IN
 commit
 save

@@ -33,15 +33,19 @@ set firewall name EDGE-IN rule 2 source address 240.0.0.0/4
 set firewall name EDGE-IN rule 2 source address 255.255.255.255/32
 set firewall name EDGE-IN rule 3 action accept
 set firewall name EDGE-IN rule 3 protocol tcp_udp
+set firewall name EDGE-IN rule 3 destination address 200.0.0.0/25
 set firewall name EDGE-IN rule 3 destination port 443
 set firewall name EDGE-IN rule 4 action accept
 set firewall name EDGE-IN rule 4 protocol tcp
+set firewall name EDGE-IN rule 4 destination address 200.0.0.128/26
 set firewall name EDGE-IN rule 4 destination port 1025
 set firewall name EDGE-IN rule 5 action accept
 set firewall name EDGE-IN rule 5 protocol tcp
+set firewall name EDGE-IN rule 5 destination address 200.0.0.128/26
 set firewall name EDGE-IN rule 5 destination port 1993
 set firewall name EDGE-IN rule 6 action accept
 set firewall name EDGE-IN rule 6 protocol udp
+set firewall name EDGE-IN rule 6 destination address 200.0.0.192/26
 set firewall name EDGE-IN rule 6 destination port 53
 set firewall name EDGE-IN rule 7 action accept
 set firewall name EDGE-IN rule 7 protocol tcp_udp
@@ -88,15 +92,19 @@ set firewall name EDGE-IN rule 2 source address 240.0.0.0/4
 set firewall name EDGE-IN rule 2 source address 255.255.255.255/32
 set firewall name EDGE-IN rule 3 action accept
 set firewall name EDGE-IN rule 3 protocol tcp_udp
+set firewall name EDGE-IN rule 3 destination address 200.0.0.0/25
 set firewall name EDGE-IN rule 3 destination port 443
 set firewall name EDGE-IN rule 4 action accept
 set firewall name EDGE-IN rule 4 protocol tcp
+set firewall name EDGE-IN rule 4 destination address 200.0.0.128/26
 set firewall name EDGE-IN rule 4 destination port 1025
 set firewall name EDGE-IN rule 5 action accept
 set firewall name EDGE-IN rule 5 protocol tcp
+set firewall name EDGE-IN rule 5 destination address 200.0.0.128/26
 set firewall name EDGE-IN rule 5 destination port 1993
 set firewall name EDGE-IN rule 6 action accept
 set firewall name EDGE-IN rule 6 protocol udp
+set firewall name EDGE-IN rule 6 destination address 200.0.0.192/26
 set firewall name EDGE-IN rule 6 destination port 53
 set firewall name EDGE-IN rule 7 action accept
 set firewall name EDGE-IN rule 7 protocol tcp_udp

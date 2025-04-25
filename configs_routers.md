@@ -36,6 +36,9 @@ primary 10.0.0.1
 peer 10.0.0.2
 mapping-id 10
 ip nat inside source list 1 pool POOL mapping-id 10 overload
+ip route 100.0.0.64 255.255.255.192 Null0
+router ospf 1
+redistribute static subnets
 int f0/0
 ip nat outside
 int f0/1
@@ -86,6 +89,9 @@ backup 10.0.0.2
 peer 10.0.0.1
 mapping-id 10
 ip nat inside source list 1 pool POOL mapping-id 10 overload
+ip route 100.0.0.64 255.255.255.192 Null0
+router ospf 1
+redistribute static subnets
 int f0/0
 ip nat outside
 int f0/1

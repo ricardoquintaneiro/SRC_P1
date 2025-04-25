@@ -462,7 +462,7 @@ set firewall name FROM-CORE-TO-DC rule 1 destination group network-group INT-IDN
 set firewall name FROM-CORE-TO-DC rule 1 destination port 443
 set firewall name FROM-CORE-TO-DC rule 2 description "Accept DNS on port 53"
 set firewall name FROM-CORE-TO-DC rule 2 action accept
-set firewall name FROM-CORE-TO-DC rule 2 protocol tcp_udp
+set firewall name FROM-CORE-TO-DC rule 2 protocol udp
 set firewall name FROM-CORE-TO-DC rule 2 source group network-group VLANS-10-20
 set firewall name FROM-CORE-TO-DC rule 2 destination group network-group INT-IDNS
 set firewall name FROM-CORE-TO-DC rule 2 destination port 53

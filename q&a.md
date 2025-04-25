@@ -44,7 +44,7 @@ Bloquear nas FW's Stateless com base em gamas de IP. Podemos ir buscar ao abuse.
 
 Deve ter acesso à Internet para fazer updates, logo só deve ter acesso a serviços específicos. Fica a dúvida em que serviços, porque o projeto não tem nada que fale nisso.
 
-### É preciso fazer mesmo SSH com o dispositivo do Admin ou é só preciso estabelecer regras para o porto 22 (2022 por causa dos pings TCP)?
+### É preciso fazer mesmo SSH com o dispositivo do Admin ou é só preciso estabelecer regras para o porto 22?
 
 Não, é só ter o porto aberto e conseguir pingar.
 

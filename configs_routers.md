@@ -256,21 +256,6 @@ end
 write
 ```
  
-## Internet-DNS
-
-```
-conf t
-no ip routing
-interface f0/0
-ip address 10.100.1.10 255.255.255.0
-no shut
-ip default-gateway 10.100.1.1
-ip http secure-port 1053
-ip http secure-server
-end
-write
-```
-
 ## Database
 
 ```

@@ -42,7 +42,7 @@ set firewall name EDGE-IN rule 5 protocol tcp
 set firewall name EDGE-IN rule 5 destination port 1993
 set firewall name EDGE-IN rule 6 action accept
 set firewall name EDGE-IN rule 6 protocol udp
-set firewall name EDGE-IN rule 6 destination port 1053
+set firewall name EDGE-IN rule 6 destination port 53
 set firewall name EDGE-IN rule 7 action accept
 set firewall name EDGE-IN rule 7 protocol tcp_udp
 set firewall name EDGE-IN rule 7 source port 80,443
@@ -97,7 +97,7 @@ set firewall name EDGE-IN rule 5 protocol tcp
 set firewall name EDGE-IN rule 5 destination port 1993
 set firewall name EDGE-IN rule 6 action accept
 set firewall name EDGE-IN rule 6 protocol udp
-set firewall name EDGE-IN rule 6 destination port 1053
+set firewall name EDGE-IN rule 6 destination port 53
 set firewall name EDGE-IN rule 7 action accept
 set firewall name EDGE-IN rule 7 protocol tcp_udp
 set firewall name EDGE-IN rule 7 source port 80,443
@@ -157,10 +157,10 @@ set firewall name FROM-OUTSIDE-TO-DMZ rule 3 description "Accept SMTP (TCP) from
 set firewall name FROM-OUTSIDE-TO-DMZ rule 3 action accept
 set firewall name FROM-OUTSIDE-TO-DMZ rule 3 protocol tcp
 set firewall name FROM-OUTSIDE-TO-DMZ rule 3 destination port 1025
-set firewall name FROM-OUTSIDE-TO-DMZ rule 4 description "Accept DNS (UDP) from DMZ on port 1053"
+set firewall name FROM-OUTSIDE-TO-DMZ rule 4 description "Accept DNS (UDP) from DMZ on port 53"
 set firewall name FROM-OUTSIDE-TO-DMZ rule 4 action accept
 set firewall name FROM-OUTSIDE-TO-DMZ rule 4 protocol udp
-set firewall name FROM-OUTSIDE-TO-DMZ rule 4 destination port 1053
+set firewall name FROM-OUTSIDE-TO-DMZ rule 4 destination port 53
 set firewall name FROM-OUTSIDE-TO-DMZ rule 5 description "Accept Established-Related Connections to DMZ"
 set firewall name FROM-OUTSIDE-TO-DMZ rule 5 action accept
 set firewall name FROM-OUTSIDE-TO-DMZ rule 5 state established enable
@@ -182,7 +182,7 @@ set firewall name FROM-CORE-TO-OUTSIDE rule 4 description "Allow SSH to Datacent
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 protocol tcp
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10
-set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 2022
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 22
 set zone-policy zone OUTSIDE from CORE firewall name FROM-CORE-TO-OUTSIDE
 set firewall name FROM-CORE-TO-DMZ rule 1 description "Accept TCP/UDP to DMZ on port 443"
 set firewall name FROM-CORE-TO-DMZ rule 1 action accept
@@ -196,10 +196,10 @@ set firewall name FROM-CORE-TO-DMZ rule 3 description "Accept SMTP (TCP) from DM
 set firewall name FROM-CORE-TO-DMZ rule 3 action accept
 set firewall name FROM-CORE-TO-DMZ rule 3 protocol tcp
 set firewall name FROM-CORE-TO-DMZ rule 3 destination port 1025
-set firewall name FROM-CORE-TO-DMZ rule 4 description "Accept DNS (UDP) from DMZ on port 1053"
+set firewall name FROM-CORE-TO-DMZ rule 4 description "Accept DNS (UDP) from DMZ on port 53"
 set firewall name FROM-CORE-TO-DMZ rule 4 action accept
 set firewall name FROM-CORE-TO-DMZ rule 4 protocol udp
-set firewall name FROM-CORE-TO-DMZ rule 4 destination port 1053
+set firewall name FROM-CORE-TO-DMZ rule 4 destination port 53
 set firewall name FROM-CORE-TO-DMZ rule 5 description "Accept ICMP to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DMZ rule 5 action accept
 set firewall name FROM-CORE-TO-DMZ rule 5 protocol icmp
@@ -208,7 +208,7 @@ set firewall name FROM-CORE-TO-DMZ rule 6 description "Allow SSH to Datacenter f
 set firewall name FROM-CORE-TO-DMZ rule 6 action accept
 set firewall name FROM-CORE-TO-DMZ rule 6 protocol tcp
 set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10
-set firewall name FROM-CORE-TO-DMZ rule 6 destination port 2022
+set firewall name FROM-CORE-TO-DMZ rule 6 destination port 22
 set zone-policy zone DMZ from CORE firewall name FROM-CORE-TO-DMZ
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections to Core"
 set firewall name TO-CORE rule 1 action accept
@@ -267,10 +267,10 @@ set firewall name FROM-OUTSIDE-TO-DMZ rule 3 description "Accept SMTP (TCP) to D
 set firewall name FROM-OUTSIDE-TO-DMZ rule 3 action accept
 set firewall name FROM-OUTSIDE-TO-DMZ rule 3 protocol tcp
 set firewall name FROM-OUTSIDE-TO-DMZ rule 3 destination port 1025
-set firewall name FROM-OUTSIDE-TO-DMZ rule 4 description "Accept DNS (UDP) to DMZ on port 1053"
+set firewall name FROM-OUTSIDE-TO-DMZ rule 4 description "Accept DNS (UDP) to DMZ on port 53"
 set firewall name FROM-OUTSIDE-TO-DMZ rule 4 action accept
 set firewall name FROM-OUTSIDE-TO-DMZ rule 4 protocol udp
-set firewall name FROM-OUTSIDE-TO-DMZ rule 4 destination port 1053
+set firewall name FROM-OUTSIDE-TO-DMZ rule 4 destination port 53
 set firewall name FROM-OUTSIDE-TO-DMZ rule 5 description "Accept Established-Related Connections to DMZ"
 set firewall name FROM-OUTSIDE-TO-DMZ rule 5 action accept
 set firewall name FROM-OUTSIDE-TO-DMZ rule 5 state established enable
@@ -292,7 +292,7 @@ set firewall name FROM-CORE-TO-OUTSIDE rule 4 description "Allow SSH to Datacent
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 action accept
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 protocol tcp
 set firewall name FROM-CORE-TO-OUTSIDE rule 4 source address 10.1.0.10
-set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 2022
+set firewall name FROM-CORE-TO-OUTSIDE rule 4 destination port 22
 set zone-policy zone OUTSIDE from CORE firewall name FROM-CORE-TO-OUTSIDE
 set firewall name FROM-CORE-TO-DMZ rule 1 description "Accept TCP/UDP to DMZ on port 443"
 set firewall name FROM-CORE-TO-DMZ rule 1 action accept
@@ -306,10 +306,10 @@ set firewall name FROM-CORE-TO-DMZ rule 3 description "Accept SMTP (TCP) to DMZ 
 set firewall name FROM-CORE-TO-DMZ rule 3 action accept
 set firewall name FROM-CORE-TO-DMZ rule 3 protocol tcp
 set firewall name FROM-CORE-TO-DMZ rule 3 destination port 1025
-set firewall name FROM-CORE-TO-DMZ rule 4 description "Accept DNS (UDP) to DMZ on port 1053"
+set firewall name FROM-CORE-TO-DMZ rule 4 description "Accept DNS (UDP) to DMZ on port 53"
 set firewall name FROM-CORE-TO-DMZ rule 4 action accept
 set firewall name FROM-CORE-TO-DMZ rule 4 protocol udp
-set firewall name FROM-CORE-TO-DMZ rule 4 destination port 1053
+set firewall name FROM-CORE-TO-DMZ rule 4 destination port 53
 set firewall name FROM-CORE-TO-DMZ rule 5 description "Accept ICMP to Datacenter from Admin device"
 set firewall name FROM-CORE-TO-DMZ rule 5 action accept
 set firewall name FROM-CORE-TO-DMZ rule 5 protocol icmp
@@ -318,7 +318,7 @@ set firewall name FROM-CORE-TO-DMZ rule 6 description "Allow SSH to Datacenter f
 set firewall name FROM-CORE-TO-DMZ rule 6 action accept
 set firewall name FROM-CORE-TO-DMZ rule 6 protocol tcp
 set firewall name FROM-CORE-TO-DMZ rule 6 source address 10.1.0.10
-set firewall name FROM-CORE-TO-DMZ rule 6 destination port 2022
+set firewall name FROM-CORE-TO-DMZ rule 6 destination port 22
 set zone-policy zone DMZ from CORE firewall name FROM-CORE-TO-DMZ
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections to Core"
 set firewall name TO-CORE rule 1 action accept
@@ -383,10 +383,10 @@ set firewall name BUILDINGS-TO-CORE rule 5 description "Accept SMTP (TCP) on por
 set firewall name BUILDINGS-TO-CORE rule 5 action accept
 set firewall name BUILDINGS-TO-CORE rule 5 protocol tcp
 set firewall name BUILDINGS-TO-CORE rule 5 destination port 1025
-set firewall name BUILDINGS-TO-CORE rule 6 description "Accept DNS (TCP/UDP) on port 1053"
+set firewall name BUILDINGS-TO-CORE rule 6 description "Accept DNS (UDP) on port 53"
 set firewall name BUILDINGS-TO-CORE rule 6 action accept
-set firewall name BUILDINGS-TO-CORE rule 6 protocol tcp_udp
-set firewall name BUILDINGS-TO-CORE rule 6 destination port 1053
+set firewall name BUILDINGS-TO-CORE rule 6 protocol udp
+set firewall name BUILDINGS-TO-CORE rule 6 destination port 53
 set firewall name BUILDINGS-TO-CORE rule 7 description "Accept TCP on port 3306"
 set firewall name BUILDINGS-TO-CORE rule 7 action accept
 set firewall name BUILDINGS-TO-CORE rule 7 protocol tcp
@@ -401,7 +401,7 @@ set firewall name BUILDINGS-TO-CORE rule 9 description "Allow SSH to Core"
 set firewall name BUILDINGS-TO-CORE rule 9 action accept
 set firewall name BUILDINGS-TO-CORE rule 9 protocol tcp
 set firewall name BUILDINGS-TO-CORE rule 9 source address 10.1.0.10
-set firewall name BUILDINGS-TO-CORE rule 9 destination port 2022
+set firewall name BUILDINGS-TO-CORE rule 9 destination port 22
 set zone-policy zone CORE from BUILDINGS firewall name BUILDINGS-TO-CORE
 set firewall name CORE-TO-BUILDINGS rule 1 description "Accept Established-Related Connections to Buildings"
 set firewall name CORE-TO-BUILDINGS rule 1 action accept
@@ -465,7 +465,7 @@ set firewall name FROM-CORE-TO-DC rule 2 action accept
 set firewall name FROM-CORE-TO-DC rule 2 protocol tcp_udp
 set firewall name FROM-CORE-TO-DC rule 2 source group network-group VLANS-10-20
 set firewall name FROM-CORE-TO-DC rule 2 destination group network-group INT-IDNS
-set firewall name FROM-CORE-TO-DC rule 2 destination port 1053
+set firewall name FROM-CORE-TO-DC rule 2 destination port 53
 set firewall name FROM-CORE-TO-DC rule 3 description "Accept TCP on port 3306"
 set firewall name FROM-CORE-TO-DC rule 3 action accept
 set firewall name FROM-CORE-TO-DC rule 3 protocol tcp
@@ -484,7 +484,7 @@ set firewall name FROM-CORE-TO-DC rule 6 description "Allow SSH to Datacenter fr
 set firewall name FROM-CORE-TO-DC rule 6 action accept
 set firewall name FROM-CORE-TO-DC rule 6 protocol tcp
 set firewall name FROM-CORE-TO-DC rule 6 source address 10.1.0.10
-set firewall name FROM-CORE-TO-DC rule 6 destination port 2022
+set firewall name FROM-CORE-TO-DC rule 6 destination port 22
 set firewall name TO-CORE rule 1 description "Accept Established-Related Connections"
 set firewall name TO-CORE rule 1 action accept
 set firewall name TO-CORE rule 1 state established enable
@@ -505,10 +505,10 @@ set firewall name TO-CORE rule 5 description "Accept SMTP (TCP) on port 1025"
 set firewall name TO-CORE rule 5 action accept
 set firewall name TO-CORE rule 5 protocol tcp
 set firewall name TO-CORE rule 5 destination port 1025
-set firewall name TO-CORE rule 6 description "Accept DNS (UDP) on port 1053"
+set firewall name TO-CORE rule 6 description "Accept DNS (UDP) on port 53"
 set firewall name TO-CORE rule 6 action accept
 set firewall name TO-CORE rule 6 protocol udp
-set firewall name TO-CORE rule 6 destination port 1053
+set firewall name TO-CORE rule 6 destination port 53
 set zone-policy zone DATACENTER from CORE firewall name FROM-CORE-TO-DC
 set zone-policy zone CORE from DATACENTER firewall name TO-CORE
 commit
